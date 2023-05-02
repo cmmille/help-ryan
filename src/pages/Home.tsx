@@ -22,7 +22,7 @@ const Home = () => {
         Help Ryan!
       </button>
 
-      {selectedFood && <FoodItem food={selectedFood} />}
+      <FoodItem food={selectedFood} />
     </div>
   );
 };

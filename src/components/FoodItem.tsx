@@ -1,11 +1,11 @@
 import { Food } from "../models/Food";
 
 interface Props {
-  food: Food;
+  food: Food | null;
 }
 
 const FoodItem = ({ food }: Props) => {
-  const { name, image } = food;
+  const { name, image } = food ? food : { name: "", image: "" };
 
   return (
     <div className="w-full max-w-xs relative">
