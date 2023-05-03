@@ -35,7 +35,9 @@ const Home = () => {
 
   return (
     <div className="w-full text-center flex flex-col justify-center items-center gap-2">
-      <h1 className="text-8xl mb-4 font-cute">What should Ryan cook?!</h1>
+      <h1 className="text-8xl mb-4 font-cute leading-[75%]">
+        What should Ryan cook?!
+      </h1>
 
       <button
         className="bg-lime-900 p-4 text-5xl rounded-md hover:bg-green-900 font-cute"

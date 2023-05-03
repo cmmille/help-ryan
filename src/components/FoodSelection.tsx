@@ -14,8 +14,16 @@ const FoodSelection = ({ food, onClick }: Props) => {
   };
   return (
     <div className="flex flex-row gap-2">
-      <button className="text-3xl text-lime-900" onClick={handleClick}>
-        {food?.checked ? <BsFillCheckSquareFill /> : <BsFillSquareFill />}
+      <button
+        className="text-3xl text-lime-900 relative "
+        onClick={handleClick}
+      >
+        {food?.checked ? (
+          <BsFillCheckSquareFill className="absolute" />
+        ) : (
+          <BsFillSquareFill className="absolute" />
+        )}
+        <BsFillSquareFill className="text-white" />
       </button>
       <h1 className="text-4xl font-cute">{food?.name}</h1>
     </div>
