@@ -3,7 +3,7 @@ import FoodList from "../data/FoodList";
 import { Food } from "../models/Food";
 import FoodItem from "../components/FoodItem";
 import FoodSelectionList from "../components/FoodSelectionList";
-import Modal from "../components/Modal";
+import Modal from "../components/Modal/Modal";
 
 const Home = () => {
   const [checklist, setChecklist] = useState(FoodList);
