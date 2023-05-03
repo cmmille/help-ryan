@@ -4,8 +4,10 @@ import curry from "../assets/curry.jpeg";
 import falafel from "../assets/falafel.jpeg";
 
 const FoodList: Food[] = [
-  { name: "Indian", image: curry },
-  { name: "Greek", image: falafel },
+  new Food("Indian", curry),
+  new Food("Greek", falafel),
+  new Food("Italian", falafel),
+  new Food("American", falafel),
 ];
 
 export default FoodList;
