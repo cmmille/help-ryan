@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: "18.2"
+  STORAGE_ACCOUNT: "clockfeldapps"
+  REPO_NAME: ${{ github.event.repository.name }}
+  STORAGE_PATH: "$web/${{ github.event.repository.name }}"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: npm install and build
+        run: |
+          echo "building ${{ env.REPO_NAME }}"
+          npm install
+          npm run build --if-present
+
+      - name: Login to azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - run: echo 'Deploying build to ${{ env.STORAGE_PATH }}'
+      - name: Upload to the storage account
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.30.0
+          inlineScript: |
+            az storage blob upload-batch --source ./dist --destination '${{ env.STORAGE_PATH }}' --account-name ${{ env.STORAGE_ACCOUNT }}
+      - name: logout
+        run: |
+          az logout
